@@ -1,7 +1,7 @@
 
-# Shalat App
+# SubMentor
 
-Sebuah aplikasi tuntunan shalat berbasis mobile. dibuat dengan React Native (Expo).
+Sebuah aplikasi pencarian mentor.
 
 
 
