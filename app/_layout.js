@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen'
 SplashScreen.preventAutoHideAsync();
 
 
-export default function _layout() {
+export default function RootLayout() {
 
 const router = useRouter();
   const [fontsLoaded] = useFonts({

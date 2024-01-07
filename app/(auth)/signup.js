@@ -5,6 +5,9 @@ import { View, Text, SafeAreaView, Button, Image, StyleSheet, TouchableOpacity, 
 import { MaterialIcons } from '@expo/vector-icons';
 import Colors from '../../assets/Colors';
 
+import {auth} from '../../utils/firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 // Google
 
 const signup = () => {
@@ -12,6 +15,24 @@ const signup = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
+  }
+  
+  // value
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [fullname, setFullname] = React.useState('');
+  const [user, setUser] = React.useState(null);
+
+  // function
+  const handleSignUp = () => {
+    if(!email || !password || !fullname) return alert('Please fill all the form');
+    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      setUser(userCredential.user);
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
   }
 
   return (
@@ -31,16 +52,16 @@ const signup = () => {
         <View style={{}}>
           <View>
             <Text style={styles.subtitle}>Full Name</Text>
-            <TextInput style={styles.inputWrapper} placeholder='Your name' />
+            <TextInput style={styles.inputWrapper} placeholder='Your name' value={fullname} onChangeText={(text) => setFullname(text)}/>
           </View>
           <View>
             <Text style={styles.subtitle}>Email</Text>
-            <TextInput style={styles.inputWrapper} placeholder='user@gmail.com' />
+            <TextInput style={styles.inputWrapper} placeholder='user@gmail.com' value={email} onChangeText={(text) => setEmail(text)}/>
           </View>
           <View>
             <Text style={styles.subtitle}>Password</Text>
             <View style={[styles.inputWrapper, { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
-              <TextInput placeholder='Password' secureTextEntry={!showPassword} />
+              <TextInput placeholder='Password' secureTextEntry={!showPassword} value={password} onChangeText={(text) => setPassword(text)}/>
               {showPassword ? <MaterialIcons name="visibility" size={24} color="black" onPress={handleShowPassword} /> : <MaterialIcons name="visibility-off" size={24} color="black" onPress={handleShowPassword} />}
 
             </View>

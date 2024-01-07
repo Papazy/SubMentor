@@ -6,6 +6,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Colors from '../../assets/Colors';
 
 // Google
+import auth from '../../utils/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const signin = () => {
 
@@ -15,14 +17,25 @@ const signin = () => {
     setShowPassword(!showPassword);
   }
 
+  // value
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [user, setUser] = React.useState(null);
+
+  // function
+  const handleSignIn = () => {
+    if(!email || !password) return alert('Please fill all the form');
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      setUser(user);
+    })
+  }
+
   return (
     <SafeAreaView style={{height:'100%'}}>
-      
         <Image
           source={require('../../assets/images/latar.png')}
           style={styles.latar}
         />
-
       
       <View style={styles.container}>
         <View style={styles.wrapper}>
@@ -32,12 +45,12 @@ const signin = () => {
         <View style={{}}>
           <View>
             <Text style={styles.subtitle}>Email</Text>
-            <TextInput style={styles.inputWrapper} placeholder='user@gmail.com' />
+            <TextInput style={styles.inputWrapper} placeholder='user@gmail.com' value={email} onChangeText={(text) => setEmail(text)}/>
           </View>
           <View>
             <Text style={styles.subtitle}>Password</Text>
             <View style={[styles.inputWrapper, {flexDirection:'row', justifyContent:'space-between', alignItems:'center'}]}>
-              <TextInput placeholder='Password' secureTextEntry={!showPassword} />
+              <TextInput placeholder='Password' secureTextEntry={!showPassword} value={password} onChangeText={(value) => setPassword(value)}/>
               {showPassword ? <MaterialIcons name="visibility" size={24} color="black" onPress={handleShowPassword} /> : <MaterialIcons name="visibility-off" size={24} color="black" onPress={handleShowPassword} /> }
               
             </View>
@@ -46,7 +59,7 @@ const signin = () => {
         </View>
         
         <View style={styles.footerWrapper}>
-          <TouchableOpacity style={[styles.button, ]} ><Text style={[styles.button_label, {color:'white'}]}>Sign In</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button, ]} ><Text style={[styles.button_label, {color:'white'}]} onPress={handleSignIn}>Sign In</Text></TouchableOpacity>
           <Text style={[styles.very_light_title, styles.center]}>Or sign in with</Text>
           <TouchableOpacity style={styles.button_google}  ><Image source={require('../../assets/images/google.png')}/></TouchableOpacity>
           <Text style={[styles.light_title, styles.center]}>Don't have an account? <Link style={{color:'blue', fontFamily:'poppins_semibold', }}href='/signup'>Register</Link></Text>
