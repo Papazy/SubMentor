@@ -1,5 +1,6 @@
 import React from 'react'
 // Material
+import { router } from 'expo-router';
 import { Link } from 'expo-router'
 import { View, Text, SafeAreaView, Button, Image, StyleSheet,TouchableOpacity,TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -9,7 +10,7 @@ import Colors from '../../assets/Colors';
 import auth from '../../utils/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-const signin = () => {
+const signin = ({navigation}) => {
 
   // handle show password
   const [showPassword, setShowPassword] = React.useState(false);
@@ -23,11 +24,12 @@ const signin = () => {
   const [user, setUser] = React.useState(null);
 
   // function
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     if(!email || !password) return alert('Please fill all the form');
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      setUser(user);
-    })
+    const response = await signInWithEmailAndPassword(auth, email, password)
+    if(response.user){
+      router.replace('/')
+    }
   }
 
   return (
