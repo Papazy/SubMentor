@@ -26,6 +26,7 @@ lalu tekan tombol **a** untuk menjalankan android
 \* **Note** : Require
 * expo sdk 49
 * Node 18+
+* Android Studio Emulator
 
 
 
