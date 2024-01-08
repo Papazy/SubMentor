@@ -9,11 +9,14 @@ import Colors from '../../assets/Colors';
 import {auth} from '../../utils/firebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
+import {ActivityIndicator } from 'react-native';
+
 // Google
 
 const signup = ({navigation}) => {
   
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   }
@@ -22,15 +25,15 @@ const signup = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [fullname, setFullname] = React.useState('');
-  const [user, setUser] = React.useState(null);
   
   // function
   const handleSignUp = async () => {
     if(!email || !password || !fullname) return alert('Please fill all the form');
     try{
+      setIsLoading(true);
       const response = await createUserWithEmailAndPassword(auth, email, password)
       console.log(response);
-      setUser(response);
+      setIsLoading(false);
       router.replace('/')
     }catch(e){
       alert(e.message);
@@ -72,7 +75,9 @@ const signup = ({navigation}) => {
         </View>
 
         <View style={styles.footerWrapper}>
-          <TouchableOpacity style={[styles.button,]} onPress={() => handleSignUp()}><Text style={[styles.button_label, { color: 'white' }]}>Sign Up</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button,]} onPress={() => handleSignUp()}>
+            { isLoading? <ActivityIndicator /> : <Text style={[styles.button_label, { color: 'white' }]}>Sign Up</Text>}
+            </TouchableOpacity>
           <Text style={[styles.very_light_title, styles.center]}>Or sign up with</Text>
           <TouchableOpacity style={styles.button_google}  ><Image source={require('../../assets/images/google.png')} /></TouchableOpacity>
           <Text style={[styles.light_title, styles.center]}>Already have an account? <Link style={{ color: 'blue', fontFamily: 'poppins_semibold', }} href='/signin'>Log in</Link></Text>

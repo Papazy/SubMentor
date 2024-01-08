@@ -6,14 +6,17 @@ import { View, Text, SafeAreaView, Button, Image, StyleSheet,TouchableOpacity,Te
 import { MaterialIcons } from '@expo/vector-icons';
 import Colors from '../../assets/Colors';
 
+import { ActivityIndicator } from 'react-native';
+
 // Google
-import auth from '../../utils/firebaseConfig';
+import {auth} from '../../utils/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const signin = ({navigation}) => {
 
   // handle show password
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   }
@@ -26,9 +29,15 @@ const signin = ({navigation}) => {
   // function
   const handleSignIn = async () => {
     if(!email || !password) return alert('Please fill all the form');
-    const response = await signInWithEmailAndPassword(auth, email, password)
-    if(response.user){
+    try{
+      setIsLoading(true);
+      const response = await signInWithEmailAndPassword(auth, email, password)
+      console.log(response);
+      setUser(response);
+      setIsLoading(false);
       router.replace('/')
+    }catch(e){
+      alert(e.message);
     }
   }
 
@@ -61,7 +70,11 @@ const signin = ({navigation}) => {
         </View>
         
         <View style={styles.footerWrapper}>
-          <TouchableOpacity style={[styles.button, ]} ><Text style={[styles.button_label, {color:'white'}]} onPress={handleSignIn}>Sign In</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button, ]} onPress={handleSignIn}>
+            
+            {isLoading ? <ActivityIndicator /> : <Text style={[styles.button_label, {color:'white'}]}>Sign In</Text>}
+          
+            </TouchableOpacity>
           <Text style={[styles.very_light_title, styles.center]}>Or sign in with</Text>
           <TouchableOpacity style={styles.button_google}  ><Image source={require('../../assets/images/google.png')}/></TouchableOpacity>
           <Text style={[styles.light_title, styles.center]}>Don't have an account? <Link style={{color:'blue', fontFamily:'poppins_semibold', }}href='/signup'>Register</Link></Text>
