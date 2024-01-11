@@ -33,6 +33,7 @@ untuk menjalankan dengan ***Dev Client***
 * Buat akun [EAS](https://expo.dev/eas)
 * Jalankan ```npm install -g eas-cli```
 * Di dalam dir project, jalankan ```eas build:configure```
+* Jalan kan ```eas build --profile development --platform android```
 * Tunggu hingga build digenerate
 * Jika terdapat pilihan *install and run on your android* ketik **Y** (untuk install di emulator android)
 * Terakhir, jalankan ```npx expo start --dev-client``` dan tekan **a** untuk menjalankan emulator 

@@ -24,7 +24,6 @@ const signin = ({navigation}) => {
   // value
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [user, setUser] = React.useState(null);
 
   // function
   const handleSignIn = async () => {
@@ -33,9 +32,8 @@ const signin = ({navigation}) => {
       setIsLoading(true);
       const response = await signInWithEmailAndPassword(auth, email, password)
       console.log(response);
-      setUser(response);
       setIsLoading(false);
-      router.replace('/')
+      router.replace('/main')
     }catch(e){
       alert(e.message);
     }

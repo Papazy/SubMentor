@@ -1,7 +1,8 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../utils/firebaseConfig";
+import { auth, db } from "../utils/firebaseConfig";
 import { Redirect } from 'expo-router'
+import {doc, getDoc} from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -22,8 +23,15 @@ export const AuthProvider = ({ children}) => {
 
         return currUser;
     },[])
-    function getUser(){
-        return user;
+    async function getUser(){
+        const userRef = doc(db, 'users', user.uid);
+        const userSnap = await getDoc(userRef);
+        if(userSnap.exists()){
+            return userSnap.data();
+        }else{
+            alert('User not found');
+            console.log('User not found')
+        }
     }
     function signUp(email, password){
         console.log("Create new user")

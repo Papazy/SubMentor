@@ -1,11 +1,10 @@
 import { View, Text } from 'react-native'
-import {Stack, Slot} from 'expo-router'
 import React from 'react'
-
-export default function _layout() {
-
-  
+import {Stack} from 'expo-router'
+const ProfileLayout = () => {
   return (
     <Stack screenOptions={{headerShown: false}}/>
   )
 }
+
+export default ProfileLayout

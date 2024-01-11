@@ -6,12 +6,31 @@ import { View, Text, SafeAreaView, Button, Image, StyleSheet, TouchableOpacity, 
 import { MaterialIcons } from '@expo/vector-icons';
 import Colors from '../../assets/Colors';
 
-import {auth} from '../../utils/firebaseConfig'
+import {auth, db} from '../../utils/firebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import {ActivityIndicator } from 'react-native';
 
-// Google
+// firestore
+import {setDoc, doc} from 'firebase/firestore'
+
+// Menyimpan data user ke database
+const saveUserDataToDatabase = async (name, email, password, isMentor, user) => {
+  try{
+    await setDoc(doc(db, 'users', user.uid),{
+      uid : user.uid,
+      name: name,
+      email: email,
+      password: password,
+      isMentor : isMentor,
+    })
+    // console.log("Document written with ID: ", docRef.id);
+    console.log("user written with ID: ", user.uid);
+  }catch(e){
+    alert(e.message);
+  }
+}
+
 
 const signup = ({navigation}) => {
   
@@ -32,10 +51,13 @@ const signup = ({navigation}) => {
     try{
       setIsLoading(true);
       const response = await createUserWithEmailAndPassword(auth, email, password)
+      console.log(response.user)
+      await saveUserDataToDatabase(fullname, email, password, false, response.user);
       console.log(response);
       setIsLoading(false);
-      router.replace('/')
+      router.replace('/main')
     }catch(e){
+      alert(console.log(e.message));
       alert(e.message);
     }
   }
