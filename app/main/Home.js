@@ -110,13 +110,11 @@ export default function index() {
                     </ScrollView>
                     {/* Top Mentor */}
 
-                    <View style={[styles.flexRow, styles.spaceBetween]}>
+                    <View style={[styles.flexRow, styles.spaceBetween, {marginTop:10}]}>
                         <Text style={styles.subtitle}>Top Mentor</Text>
                         <Text style={styles.seeAll}>See All</Text>
                     </View>
-                    {specialities.map((speciality, index) => {
-                        return <TopMentor user={user} subject={speciality} />
-                    })}
+                        <TopMentor user={user} />
 
                 </View>
             </SafeAreaView>
