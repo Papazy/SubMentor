@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../context/AuthContext';
 import { router, } from 'expo-router';
-import { ActivityIndicator, ScrollView, TouchableOpacity, View, Text, SafeAreaView, StyleSheet, Image } from 'react-native'
+import { ActivityIndicator, ScrollView, TouchableOpacity, View, Text, SafeAreaView, StyleSheet, Image, StatusBar } from 'react-native'
 import Colors from '../../assets/Colors';
 
 
@@ -9,7 +9,6 @@ import Colors from '../../assets/Colors';
 import { MaterialCommunityIcons, Entypo, FontAwesome, AntDesign, Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-
 // Componenst
 import UpComingCard from '../../assets/components/UpComingCard';
 import TopMentor from '../../assets/components/TopMentor';
@@ -59,12 +58,12 @@ export default function index() {
             alert(e.message);
         }
     }
-    if (isLoading) return <ActivityIndicator />;
+    if (isLoading) return <View style={{flex:1,justifyContent:'center', alignItems:'center'}}><ActivityIndicator size="large" color="blue"/></View> ;
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <SafeAreaView>
                 {/* Menutupi agar tidak tertutup Status Bar */}
-                <View style={{ marginTop: 30, marginHorizontal: 20 }}>
+            <SafeAreaView style={{marginTop:StatusBar.currentHeight}}>
+                <View style={{ marginHorizontal: 20 }}>
 
                     {/* header */}
                     <View style={[styles.flexRow, styles.spaceBetween]}>
@@ -100,7 +99,7 @@ export default function index() {
                         <View style={[styles.flexRow, { marginTop: 10 }]}>
                             {specialities.map((speciality, index) => {
                                 return (
-                                    <TouchableOpacity style={{ backgroundColor: Colors.ungu, borderRadius: 10, padding: 10, marginRight: 10 }}>
+                                    <TouchableOpacity key={index} style={{ backgroundColor: Colors.ungu, borderRadius: 10, padding: 10, marginRight: 10 }}>
                                         <Text style={{ color: 'white', fontFamily: 'inter_regular' }}>{speciality}</Text>
                                     </TouchableOpacity>
                                 )

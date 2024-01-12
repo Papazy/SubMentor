@@ -73,19 +73,19 @@ export default function onBoarding() {
     pages={[
       {
         backgroundColor: '#fff',
-        image: <Image source={require('../../assets/images/onBoard1.png')} />,
+        image: <Image source={require('../../assets/images/onBoard1.png')} style={{width:343, height:270}}/>,
         title: 'Discover Experienced Mentor',
         subtitle: 'Empower Your Journey withKnowledgeable Mentors',
       },
       {
         backgroundColor: '#fff',
-        image: <Image source={require('../../assets/images/onBoard2.png')} />,
+        image: <Image source={require('../../assets/images/onBoard2.png')} style={{width:343, height:270}}/>,
         title: 'Effortless Appointment Booking',
         subtitle: 'Empower Your Journey with Knowledgeable Mentors',
       },
       {
         backgroundColor: '#fff',
-        image: <Image source={require('../../assets/images/onBoard3.png')} />,
+        image: <Image source={require('../../assets/images/onBoard3.png')} style={{width:343, height:270}}/>,
         title: 'Learn What You Want To Learn',
         subtitle: 'Empower Your Journey with Knowledgeable Mentors',
       },

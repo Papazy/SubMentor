@@ -23,6 +23,19 @@ export const styles =  StyleSheet.create({
             marginVertical: 14,
             gap: 10,
         },
+        searchBarLarge: {
+            backgroundColor: '#F2F2F2',
+            borderRadius: 10,
+            borderColor: '#E0E0E0',
+            borderWidth: 1,
+            paddingHorizontal: 10,
+            paddingVertical: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginHorizontal: 0,
+            marginVertical: 14,
+            gap: 10,
+        },
         fotoProfileMentoring: {
             width: 65,
             height: 65,
@@ -91,5 +104,21 @@ export const styles =  StyleSheet.create({
             marginVertical: 10,
         },
         
+
+        // Chats
+
+        // Buttons
+        button :{
+            backgroundColor: Colors.ungu,
+            borderRadius:20,
+            paddingVertical:10,
+            paddingHorizontal:5
+        },
+        buttonLabel :{
+            textAlign:'center',
+            color: 'white',
+            fontFamily:'poppins_regular',
+            fontSize:16,
+        }
     
     })

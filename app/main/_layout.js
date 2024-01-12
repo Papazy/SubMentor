@@ -25,23 +25,23 @@ export default function appLayout() {
           }
     
         }}/>
+          <Tabs.Screen name="Mentor"  options={{
+            tabBarIcon: ({focused, color, size}) => {
+              if(focused) return (<Ionicons name="people" size={24} color='black' />) 
+              else return <Ionicons name="people-outline" size={24} color="black" /> }
+              
+            }}/>
         <Tabs.Screen name="Chats" options={{
           tabBarIcon: ({focused,color, size}) => (<Ionicons name={focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline' } size={24} color="black" />)
 
         }}/>
-        <Tabs.Screen name="Mentor"  options={{
-          tabBarIcon: ({focused, color, size}) => {
-            if(focused) return (<Ionicons name="people" size={24} color='black' />) 
-            else return <Ionicons name="people-outline" size={24} color="black" /> }
-          
-        }}/>
-        <Tabs.Screen name="Profile"  options={{
-          tabBarIcon: ({focused, color, size}) => 
-          {if(focused) return <FontAwesome name="user-circle" size={24} color='black' />
-        else return <FontAwesome name="user-o" size={24} color="black" />}
-          
-          
-        }}/>
+          <Tabs.Screen name="Profile"  options={{
+            tabBarIcon: ({focused, color, size}) => 
+            {if(focused) return <FontAwesome name="user-circle" size={24} color='black' />
+          else return <FontAwesome name="user-o" size={24} color="black" />}
+            
+            
+          }}/>
       </Tabs>
     </AuthProvider>
   )

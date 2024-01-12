@@ -16,7 +16,7 @@ const UpComingCard = ({user}) => {
                     <View style={[styles.flexRow, { alignItems: 'center', gap: 15 }]}>
                         <Image source={require('../../assets/images/profile.jpg')} style={styles.fotoProfileMentoring} />
                         <View>
-                            <Text style={[styles.white, { fontFamily: 'poppins_bold', fontSize: 18 }]}>{user.name}</Text>
+                            <Text style={[styles.white, { fontFamily: 'poppins_bold', fontSize: 18 }]}>Fajry</Text>
                             <Text style={[styles.white, { fontFamily: 'poppins_regular', fontSize: 14 }]}>General</Text>
                         </View>
 

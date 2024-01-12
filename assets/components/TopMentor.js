@@ -27,8 +27,11 @@ const TopMentor = ({ user, subject }) => {
         }
         getMentorData();
     }, [])
-
-
+    
+    const handleOnClickMentor = (id) => {
+        const pathname = `/book/${id}`;
+        router.push(pathname)
+    }
     if (isLoading) return <ActivityIndicator/>
     return (
         <>
@@ -37,12 +40,12 @@ const TopMentor = ({ user, subject }) => {
                 {/* Kartu */ }
                 return(
                 <View key={index} style={styles.borderLight}>
-                    <View style={[styles.flexRow, { gap: 10, width: '100%' }]}>
+                    <View style={[styles.flexRow, { gap: 10, width: '100%',}]}>
                         <Image source={require('../../assets/images/profile.jpg')} style={{ width: 80, height: 105, borderRadius: 10 }} />
-                        <View style={{ gap: 5 }}>
+                        <View style={{ gap: 5, flex:1 }}>
                             <View style={[styles.flexRow, styles.spaceBetween]}>
                                 <View style={[styles.flexRow, { backgroundColor: Colors.lightBlue, paddingHorizontal: 10, paddingVertical: 3, gap: 5, alignItems: 'center', borderRadius: 30 }]}>
-                                    <MaterialIcons name="verified" size={24} color={Colors.ungu} />
+                                    <MaterialIcons name="verified" size={20} color={Colors.ungu} />
                                     <Text style={styles.textInformation2}>Professional Mentor</Text>
                                 </View>
                                 <View>
@@ -50,30 +53,30 @@ const TopMentor = ({ user, subject }) => {
                                 </View>
                             </View>
                             <View>
-                                <Text style={{ fontSize: 16 }}>{mentor.name}</Text>
-                                <Text style={{ color: Colors.text_secondary, fontSize: 14 }}>{mentor.skills[0]} Mentor</Text>
+                                <Text style={{ fontSize: 15 }}>{mentor.name}</Text>
+                                <Text style={{ color: Colors.text_secondary, fontSize: 13 }}>{mentor.skills[0]} Mentor</Text>
                             </View>
-                            <View style={[styles.flexRow, { alignItems: 'center' }]}>
+                            <View style={[styles.flexRow, { alignItems: 'center', flex:1, justifyContent:'space-between' }]}>
                                 <View style={[styles.flexRow, { alignItems: 'center', gap: 5 }]}>
                                     <View style={[styles.flexRow]}>
 
-                                        <FontAwesome name="star" size={24} color={Colors.yellowStar} />
-                                        <FontAwesome name="star" size={24} color={Colors.yellowStar} />
-                                        <FontAwesome name="star" size={24} color={Colors.yellowStar} />
-                                        <FontAwesome name="star" size={24} color={Colors.yellowStar} />
-                                        <FontAwesome name="star-o" size={24} color={Colors.yellowStar} />
+                                        <FontAwesome name="star" size={18} color={Colors.yellowStar} />
+                                        <FontAwesome name="star" size={18} color={Colors.yellowStar} />
+                                        <FontAwesome name="star" size={18} color={Colors.yellowStar} />
+                                        <FontAwesome name="star" size={18} color={Colors.yellowStar} />
+                                        <FontAwesome name="star-o" size={18} color={Colors.yellowStar} />
                                     </View>
-                                    <Text style={[styles.textLight, { color: 'black', fontSize: 14 }]}>4.0</Text>
+                                    <Text style={[styles.textLight, { color: 'black', fontSize: 13 }]}>4.0</Text>
                                 </View>
-                                <View style={styles.garisSamping}></View>
+                                {/* <View style={styles.garisSamping}></View> */}
                                 <Text style={styles.textLight}>500 Reviews</Text>
                             </View>
                         </View>
                     </View>
-                    <View style={{ backgroundColor: Colors.lightBlue, padding: 12, borderRadius: 10, marginTop: 10 }}>
+                    <TouchableOpacity style={{ backgroundColor: Colors.lightBlue, padding: 12, borderRadius: 10, marginTop: 10 }} onPress={()=>handleOnClickMentor(mentor.uid)}>
                         {/* appointment */}
                         <Text style={{ textAlign: 'center', color: Colors.ungu, fontSize: 16 }}>Make Appointment</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 )
             })}

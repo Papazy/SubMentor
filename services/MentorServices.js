@@ -39,3 +39,26 @@ export const getAllMentorsWithUserData = async () => {
     }));
     return mentors;
 }
+
+export const getMentorWithId = async (userId) => {
+    
+    const mentorRef = collection(db, 'mentors');
+    const mentorSnap = await getDocs(query(mentorRef, where('uid', '==', userId)));
+    const mentorUserData = await getDocs(query(collection(db, 'users'), where('uid', '==', userId)))
+    console.log("Data Mentor yang diraih :")
+    console.log(mentorUserData)
+    console.log(mentorSnap)
+    if(mentorUserData.empty || mentorSnap.empty){
+        console.log('Tidak menemukan User');
+        return null;
+    }
+    const userData =  mentorUserData.docs[0].data();
+    const mentorData = mentorSnap.docs[0].data();
+
+    const mentorValue = {
+        ...mentorData,
+        ...userData,
+    }
+    console.log(mentorValue);
+    return mentorValue;
+}

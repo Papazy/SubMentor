@@ -1,11 +1,14 @@
 
 # SubMentor
 
-Sebuah aplikasi pencarian mentor.
+SubMentor adalah platform inovatif yang menghubungkan pencari ilmu dengan mentor berkompeten, menciptakan ekosistem pembelajaran dinamis. Pengguna dapat mencari mentor berdasarkan sub bab pelajaran, melihat profil mentor yang komprehensif, dan berkomunikasi langsung untuk menjadwalkan sesi. Fitur-fitur utamanya meliputi pencarian spesifik, profil mentor yang detail, penambahan skill oleh mentor, pesan langsung, serta rating dan ulasan. SubMentor memfasilitasi pembelajaran personal dan efektif dengan menggabungkan keahlian mentor dan kebutuhan belajar pengguna.
 
-
-
-
+## 🚀 About Team
+Tim SubMentor beranggotakan :
+- [Aditya Rizki Ramadhan](https://github.com/AditRizkii)
+- [Ahmad Faqih Al Ghiffary](https://github.com/AFaqihAG)
+- [Fajry Ariansyah](https://github.com/Papazy)
+- [Furqan Al Ghifari Zulva](https://github.com/furqanx)
 
 ## Installation
 
@@ -36,9 +39,8 @@ untuk menjalankan dengan ***Dev Client***
 * Jalan kan ```eas build --profile development --platform android```
 * Tunggu hingga build digenerate
 * Jika terdapat pilihan *install and run on your android* ketik **Y** (untuk install di emulator android)
+* Jika tidak, download build tersebut lalu drag ke emulator untuk diinstall
 * Terakhir, jalankan ```npx expo start --dev-client``` dan tekan **a** untuk menjalankan emulator 
-
-
 
 \* **Note** : Require
 * expo sdk 49
@@ -47,14 +49,9 @@ untuk menjalankan dengan ***Dev Client***
 
 
     
-
-
-
-
-    
 ## Tech Stack
 
-**Client:** React Native, Expo (using expo-router)
+**Mobile Development:** React Native, Expo (using expo-router)
 
-**Server:** Firebase
+**Database:** Firebase
 
