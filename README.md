@@ -48,6 +48,20 @@ untuk menjalankan dengan ***Dev Client***
 * Android Studio Emulator
 
 
+## Screenshots
+
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/1.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/2.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/3.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/4.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/5.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/6.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/7.png?raw=true)
+![App Screenshot](https://github.com/Papazy/SubMentor/blob/main/demo/8.png?raw=true)
+
+
+
+
     
 ## Tech Stack
 
