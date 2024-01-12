@@ -49,14 +49,14 @@ untuk menjalankan dengan ***Dev Client***
 
 
 ## Screenshots
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/1.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/2.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/3.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/4.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/5.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/6.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/7.png?raw=true" width="400" height="790">
-<img src="https://github.com/Papazy/SubMentor/blob/main/demo/8.png?raw=true" width="400" height="790">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/1.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/2.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/3.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/4.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/5.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/6.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/7.png?raw=true" width="267" height="527">
+<img src="https://github.com/Papazy/SubMentor/blob/main/demo/8.png?raw=true" width="267" height="527">
 
 
 
