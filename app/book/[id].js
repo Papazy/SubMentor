@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import UpComingCard from '@Assets/components/UpComingCard'
 import { Entypo } from '@expo/vector-icons'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
+import { useAuth } from '../../context/AuthContext';
+
+import { bookMentor } from '../../services/MentorServices'
+
 
 // services
 import { getMentorWithId } from '@Services/MentorServices'
@@ -13,8 +17,10 @@ import Colors from '@Assets/Colors'
 const mentorBooking = () => {
 
     const {id} = useLocalSearchParams();
-    const [mentor, setMentor] = useState();
+    const [mentor, setMentor] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const {user} = useAuth();
+   
     useEffect(()=>{
         const getData = async() => {
             console.log('Mendapatkan data');
@@ -26,6 +32,18 @@ const mentorBooking = () => {
 
         getData();
     },[])
+
+
+    const handleBook = async () =>     {
+        const value = await bookMentor(user.uid, mentor.uid)
+        if(value){
+            console.log(value)
+            alert('Berhasil booking');
+        }else{
+            console.log(value)
+            alert('Gagal booking');
+        }
+    }
 
     const navigation = useNavigation();
     if(isLoading) return (<View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
@@ -62,7 +80,7 @@ const mentorBooking = () => {
                 <View></View>
                 {/* button */}
                 <View>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('status')}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleBook()}>
                         <Text style={styles.buttonLabel}>Book Appoinment</Text>
                     </TouchableOpacity>
                 </View>

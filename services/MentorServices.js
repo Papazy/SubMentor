@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../utils/firebaseConfig";
 import { Redirect } from 'expo-router'
-import { doc, getDoc, getDocs, collection, query, where } from 'firebase/firestore'
+import { addDoc, doc, getDoc, getDocs, collection, query, where } from 'firebase/firestore'
 
 
 export const getAllMentors = async () => {
@@ -62,3 +62,53 @@ export const getMentorWithId = async (userId) => {
     console.log(mentorValue);
     return mentorValue;
 }
+
+export const bookMentor = async (userIdBook, mentorIdBook) => {
+    try{
+        const docRef = await addDoc(collection(db, 'bookings'), {
+        mentorId : mentorIdBook,
+        userId : userIdBook,
+        status: 'pending',
+    });
+
+        console.log()
+    return docRef.id;
+    }catch(e){
+        console.log(e);
+        return null;
+    }   
+}
+
+export const getAllMentoringSessionsFromMentor = async (mentorId) => {
+    const mentoringSessions = [];
+    const mentoringSessionsRef = collection(db, 'bookings');
+    const mentoringSessionsSnap = await getDocs(query(mentoringSessionsRef, where('mentorId', '==', mentorId)));
+    mentoringSessionsSnap.forEach((doc) => {
+        mentoringSessions.push(doc.data());
+    });
+    console.log('Mentoring Sessions:')
+    console.log(mentoringSessions);
+    return mentoringSessions;
+}
+
+export const getAllPendingMentoringSessionsFromMentor = async (mentorId) => {
+    const mentoringSessions = [];
+    const mentoringSessionsRef = collection(db, 'bookings');
+    const mentoringSessionsSnap = await getDocs(query(mentoringSessionsRef, where('mentorId', '==', mentorId), where('status', '==', 'pending')));
+    mentoringSessionsSnap.forEach((doc) => {
+        mentoringSessions.push(doc.data());
+    });
+    console.log('Mentoring Sessions:')
+    console.log(mentoringSessions);
+    return mentoringSessions;
+}
+
+
+export const checkIfUserIsMentor = async (userId) => {
+    const mentorSnap = await getDoc(doc(db, 'users', userId));
+    const mentorData = mentorSnap.data();
+
+    return mentorData.isMentor;
+}
+
+

@@ -26,19 +26,7 @@ const status = () => {
 
     return (
         <>
-        <Modal
-            animationType="fade"
-            style={{ flex: 1 }}
-            transparent={true}
-            visible={IsModalVisible}
-            onRequestClose={() => setIsModalVisible(false)}
-        >
-
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <LottieView source={require('../../assets/images/Success.json')}  loop={isLoop} style={{ width: 300, height: 300 }} ref={animationRef} speed={0.2} />
-            </View>
-        </Modal>
-        <Button title="Show modal" onPress={() => setIsModalVisible(true)} />
+            <Text>Status</Text>
         </>
     )
 }

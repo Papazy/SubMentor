@@ -113,7 +113,7 @@ export default function index() {
                         <Text style={styles.subtitle}>Top Mentor</Text>
                         <Text style={styles.seeAll}>See All</Text>
                     </View>
-                        <TopMentor user={user} />
+                    <TopMentor user={user} />
 
                 </View>
             </SafeAreaView>

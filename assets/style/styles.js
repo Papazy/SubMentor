@@ -66,6 +66,14 @@ export const styles =  StyleSheet.create({
             borderRadius: 10,
             marginTop: 10,
         },
+        subKartuUpcomingColumn: {
+            backgroundColor: 'white',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            padding: 15,
+            borderRadius: 10,
+            marginTop: 10,
+        },
         white: {
             color: 'white'
         },
@@ -89,6 +97,11 @@ export const styles =  StyleSheet.create({
             color: Colors.ungu,
             fontFamily: 'inter_regular',
             fontSize: 13,
+        },
+        textInformation3: {
+            color: Colors.ungu,
+            fontFamily: 'poppins_regular',
+            fontSize: 12,
         },
         textLight:{
             color: Colors.text_secondary,
@@ -119,6 +132,32 @@ export const styles =  StyleSheet.create({
             color: 'white',
             fontFamily:'poppins_regular',
             fontSize:16,
-        }
+        },
+
+        // card
+        card_green: {
+            backgroundColor: '#61C016',
+            borderRadius: 15,
+            paddingVertical: 8,
+            paddingHorizontal:10,
+          },
+          card_red: {
+            backgroundColor: '#E23232',
+            borderRadius: 15,
+            paddingVertical: 8,
+            paddingHorizontal:10,
+          },
+          card_white: {
+            backgroundColor: '#ffffff',
+            borderRadius: 15,
+            paddingVertical: 8,
+            paddingHorizontal:10,
+          },
+          card_gray: {
+            backgroundColor: '#808080',
+            borderRadius: 15,
+            paddingVertical: 8,
+            paddingHorizontal:10,
+          },
     
     })

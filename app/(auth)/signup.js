@@ -23,6 +23,7 @@ const saveUserDataToDatabase = async (name, email, password, isMentor, user) => 
       email: email,
       password: password,
       isMentor : isMentor,
+      chatRooms : []
     })
     // console.log("Document written with ID: ", docRef.id);
     console.log("user written with ID: ", user.uid);

@@ -28,6 +28,7 @@ import { AuthProvider } from '../context/AuthContext';
     
 
     return (
+      
         <Stack initialRouteName='main' screenOptions={{ headerShown: false }} >
         </Stack>
     

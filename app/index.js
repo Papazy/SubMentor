@@ -21,6 +21,8 @@ export default () => {
     },[])
 if(isLoading) return <ActivityIndicator/>;
 if(user) return <Redirect href='/main'/>
+console.log('ada user');
+console.log(user);
 
 return <Redirect href='/onBoarding'/>
 }
