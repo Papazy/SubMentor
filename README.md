@@ -65,7 +65,7 @@ untuk menjalankan dengan ***Dev Client***
     
 ## Tech Stack
 
-**Mobile Development:** React Native, Expo (using expo-router)
+**Mobile:** React Native, Expo
 
-**Database:** Firebase
+**Backend:** Firebase
 
