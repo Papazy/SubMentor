@@ -66,9 +66,13 @@ untuk menjalankan dengan ***Dev Client***
 ## Tech Stack
 
 **Mobile:** React Native, Expo
+
 **Backend:** Firebase
+
 **Database:** Firestore
+
 **Auth:** Firebase Authentication
+
 
 
 
