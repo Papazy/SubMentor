@@ -5,31 +5,66 @@ import { ActivityIndicator, ScrollView, Image, View, Text, SafeAreaView, StatusB
 import Colors from '@Assets/Colors';
 import { styles } from '@Assets/style/styles';
 
+import moment from 'moment';
+
+
 // icons
 import { Feather } from '@expo/vector-icons';
 
-import { getChatUserId } from '@Services/ChatServices';
+import { listenToUserChats, updateIsReadedChatRoomId } from '@Services/ChatServices';
+import { QuerySnapshot, onSnapshot } from 'firebase/firestore';
 
 export default function index() {
-    const [chatRooms, setChatRoom] = React.useState([]);
+    const [chatRooms, setChatRooms] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
+    
 
     const { user } = useAuth();
     useEffect(() => {
-        const getData = async () => {
-            const dataReturn = await getChatUserId(user.uid);
-            setChatRoom(dataReturn);
-            console.log("Daftar Chat Room");
-            console.log(dataReturn);
+        listenToUserChats(user.uid, (chatRooms) => {
+            // Update the state with the new chat data
+            setChatRooms((prevChatRooms) => {
+                const existingIndex = prevChatRooms.findIndex(item => item.id === chatRooms.id);
+
+                // If it exists, update it; otherwise, add a new one
+                if (existingIndex !== -1) {
+                    const updatedChats = [...prevChatRooms];
+                    updatedChats[existingIndex] = chatRooms;
+                    return updatedChats;
+                } else {
+                    return [...prevChatRooms, chatRooms];
+                }
+            });
             setIsLoading(false);
-        }
-        getData();
+        });
+
+        
+
     }, []);
 
-    const handleGoToChatRoom = (chatRoomId) => {
+    const handleGoToChatRoom = (chatRoomId, partnerName) => {
+        console.log("chatRoomId");
+        console.log(chatRoomId);
+        updateIsReadedChatRoomId(chatRoomId);
         const pathname = `/main/Chats/${chatRoomId}`;
-        router.push(pathname);
+        
+        router.push({pathname:pathname, params:{id:chatRoomId, partnerName: partnerName}});
     }
+
+    const getTimeDisplay = (sentAtDate) => {
+        const currentMoment = moment();
+        const sentMoment = moment(sentAtDate);
+
+        const durationInHours = currentMoment.diff(sentMoment, 'hours');
+
+        if (durationInHours < 24) {
+            return sentMoment.format("H:mm");
+        } else if (durationInHours < 48) {
+            return 'Yesterday';
+        } else {
+            return sentMoment.format("D MMMM");
+        }
+    };
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -42,7 +77,7 @@ export default function index() {
                 {/* List Chat */}
                 {isLoading ? <ActivityIndicator /> : chatRooms.map((item, index) => {
                     return (
-                        <TouchableOpacity onPress={()=>handleGoToChatRoom(item)} key={index} style={{ paddingHorizontal: 5, paddingTop: 20, gap: 15 }}>
+                        <TouchableOpacity onPress={()=>handleGoToChatRoom(item.id, item.partner.name)} key={index} style={{ paddingHorizontal: 5, paddingTop: 20, gap: 15 }}>
                             {/* Card */}
 
                             <View  style={[styles.flexRow, { gap: 10, alignItems: 'center' }]}>
@@ -51,10 +86,14 @@ export default function index() {
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <View style={[styles.flexRow, styles.spaceBetween]}>
-                                        <Text style={{ fontSize: 15, fontFamily: 'inter_regular', fontWeight: '700' }}>Fajry</Text>
-                                        <Text style={{ fontSize: 13, fontFamily: 'inter_regular', fontWeight: '400' }}>5 mins ago</Text>
+                                        <Text style={{ fontSize: 15, fontFamily: 'inter_regular', fontWeight: '700' }}>{item.partner.name}</Text>
+                                    {!item.chatRoomData.recentMessage.isReaded && item.chatRoomData.recentMessage.senderId !== user.uid ? 
+                                        <Text style={{ fontSize: 13, fontFamily: 'inter_bold', fontWeight: '400' }}>{getTimeDisplay(item.chatRoomData.recentMessage.sentAt.toDate())}</Text> : 
+                                        <Text style={{ fontSize: 13, fontFamily: 'inter_regular', fontWeight: '400' }}>{getTimeDisplay(item.chatRoomData.recentMessage.sentAt.toDate())}</Text> } 
                                     </View>
-                                    <Text style={{ fontSize: 13, fontFamily: 'inter_regular', fontWeight: '400', color: '#5E5E5E' }} numberOfLines={1}>Saya sangat bersemangat mengikut Hackfest 2024 !</Text>
+                                    {!item.chatRoomData.recentMessage.isReaded && item.chatRoomData.recentMessage.senderId !== user.uid ? 
+                                    <Text style={{ fontSize: 13, fontFamily: 'inter_bold', fontWeight: '400', color: 'black' }} numberOfLines={1}>{item.chatRoomData.recentMessage.messageText}</Text> :
+                                    <Text style={{ fontSize: 13, fontFamily: 'inter_regular', fontWeight: '400', color: '#5E5E5E' }} numberOfLines={1}>{item.chatRoomData.recentMessage.messageText}</Text> }
                                 </View>
                             </View>
                         </TouchableOpacity >
